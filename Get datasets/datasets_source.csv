@@ -14,3 +14,4 @@ cornell,Cornell Newsroom,news,TRUE,,Dataset contains 1.3 million articles and su
 samsum,SAMSum,chat dialogues,TRUE,16k,Dataset contains over 16K chat dialogues with manually annotated summaries.,https://metatext.io/datasets/samsum,,
 aeslc,Annotated Enron Subject Line Corpus (AESLC),email,,,Dataset contains email messages of employees in the Enron Corporation.,https://metatext.io/datasets/annotated-enron-subject-line-corpus-(aeslc),,
 billsum,BillSum,bills,,,Dataset contains a summarization of US Congressional and California state bills.,https://metatext.io/datasets/billsum,,
+thaisum,thaisum,,,380k,,https://huggingface.co/datasets/thaisum,https://huggingface.co/datasets/thaisum,https://huggingface.co/datasets/thaisum
