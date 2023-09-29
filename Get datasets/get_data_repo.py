@@ -7,6 +7,8 @@ import os
 from urllib.parse import urlparse
 import re
 import git
+from datasets import load_dataset
+import json
 
 def main():
     
@@ -26,19 +28,24 @@ def main():
             
             
     # print the dataset need to manually download
-    cloneable_list = []
+    git_list = []
+    huggingface_list = []
     print(f'please manually download these dataset. :')
     for source in sources.itertuples():
-        git_cloneable = bool(re.search("huggingface.co|github.com", urlparse(source.Link_to_download).netloc))
-        if not git_cloneable:
-            print(f' - {source.Name} from {source.Link_to_download} download to {source.Local_repo_dir}')
+        is_git = bool(re.search("github.com", urlparse(source.Link_to_download).netloc))
+        is_huggingface = bool(re.search("huggingface.co", urlparse(source.Link_to_download).netloc))
+        
+        if is_huggingface:
+            huggingface_list.append(source)
+        elif is_git:
+            git_list.append(source)
         else:
-            cloneable_list.append(source)
+            print(f' - {source.Name} from {source.Link_to_download} download to {source.Local_repo_dir}')
     print()
 
 
     #clone the datasets repository.
-    for source in cloneable_list:
+    for source in git_list:
         print(f"Cloning {source.Name} to {source.Local_repo_dir}")
         
         if not test_run: 
@@ -47,6 +54,28 @@ def main():
                 
             except Exception as e:
                 print(f"An error occurred while cloning {source.Link_to_download}: {e}")    
+                
+                
+    for source in huggingface_list:
+        print(f"Download dataset {source.Name} to {source.Local_repo_dir}")
+        
+        if not test_run: 
+            
+            local_path = lambda dir : os.path.join(source.Local_repo_dir, str(dir)+".json")
+            cache_dir = os.path.join(source.Local_repo_dir, "data")
+            
+            huggingface_dataset_name = "/".join(urlparse(source.Link_to_download).path.split('/')[2:])
+            
+            try:
+                dataset = load_dataset(huggingface_dataset_name, data_dir=cache_dir, cache_dir=cache_dir)
+
+                for segment in dataset.key():
+
+                    with open(local_path(segment),'w') as f:
+                        json.dump(dataset[segment].to_dict(), f)
+
+            except Exception as e:
+                print(f"An error occurred while downloading {source.Link_to_download}: {e}")    
         
     print(f"cloned all datasets repositories")
 
