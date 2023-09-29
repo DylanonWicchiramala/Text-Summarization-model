@@ -10,27 +10,25 @@ import git
 from datasets import load_dataset
 import json
 
-def main():
-    
-    datasets_source_path = os.path.abspath("Get datasets/datasets_source.csv")
-    test_run = False
+datasets_source_path = os.path.abspath("Get datasets/datasets_source.csv")
+test_run = False
 
+def main():
     sources = pd.read_csv(datasets_source_path, index_col="Unique").dropna(subset="Link_to_download")
 
     # assign the local repositories directory.
     sources["Local_repo_dir"] = [ os.path.join(os.path.abspath("Get datasets/data_repo"), dir_name) for dir_name in sources.index]
-
 
     # make projects directory.
     for repo_dir in sources["Local_repo_dir"]:
         if not os.path.exists(repo_dir):
             os.makedirs(repo_dir)
             
-            
     # print the dataset need to manually download
     git_list = []
     huggingface_list = []
     print(f'please manually download these dataset. :')
+    
     for source in sources.itertuples():
         is_git = bool(re.search("github.com", urlparse(source.Link_to_download).netloc))
         is_huggingface = bool(re.search("huggingface.co", urlparse(source.Link_to_download).netloc))
@@ -43,7 +41,6 @@ def main():
             print(f' - {source.Name} from {source.Link_to_download} download to {source.Local_repo_dir}')
     print()
 
-
     #clone the datasets repository.
     for source in git_list:
         print(f"Cloning {source.Name} to {source.Local_repo_dir}")
@@ -55,16 +52,15 @@ def main():
             except Exception as e:
                 print(f"An error occurred while cloning {source.Link_to_download}: {e}")    
                 
-                
+    # download the datasets from huggingface
     for source in huggingface_list:
         print(f"Download dataset {source.Name} to {source.Local_repo_dir}")
+
+        local_path = lambda dir : os.path.join(source.Local_repo_dir, str(dir)+".json")
+        cache_dir = os.path.join(source.Local_repo_dir, "data")
+        huggingface_dataset_name = "/".join(urlparse(source.Link_to_download).path.split('/')[2:])
         
         if not test_run: 
-            
-            local_path = lambda dir : os.path.join(source.Local_repo_dir, str(dir)+".json")
-            cache_dir = os.path.join(source.Local_repo_dir, "data")
-            
-            huggingface_dataset_name = "/".join(urlparse(source.Link_to_download).path.split('/')[2:])
             
             try:
                 dataset = load_dataset(huggingface_dataset_name, data_dir=cache_dir, cache_dir=cache_dir)
