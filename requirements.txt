@@ -1,0 +1,4 @@
+pyarrow
+pandas==2.0.1
+GitPython
+datasets
