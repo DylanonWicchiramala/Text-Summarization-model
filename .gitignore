@@ -2,3 +2,4 @@ Get datasets/data_repo/*
 *.parquet
 huggingface_cache/*
 wandb/*
+credentials.py
