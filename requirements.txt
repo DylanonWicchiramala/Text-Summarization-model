@@ -5,3 +5,5 @@ datasets
 nltk
 pythainlp==3.1.1
 wandb
+transformers
+sentencepiece
