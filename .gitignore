@@ -3,3 +3,4 @@ Get datasets/data_repo/*
 huggingface_cache/*
 wandb/*
 credentials.py
+*.arrow
