@@ -1,0 +1,113 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "default",
+  "dataset_size": 12370897819,
+  "description": "",
+  "download_checksums": {
+    "c:\\Users\\dylan\\Projects\\Text-Summarization-model\\datasets\\slice_0.parquet": {
+      "num_bytes": 695312992,
+      "checksum": null
+    },
+    "c:\\Users\\dylan\\Projects\\Text-Summarization-model\\datasets\\slice_1.parquet": {
+      "num_bytes": 695710149,
+      "checksum": null
+    },
+    "c:\\Users\\dylan\\Projects\\Text-Summarization-model\\datasets\\slice_2.parquet": {
+      "num_bytes": 692833299,
+      "checksum": null
+    },
+    "c:\\Users\\dylan\\Projects\\Text-Summarization-model\\datasets\\slice_3.parquet": {
+      "num_bytes": 695402244,
+      "checksum": null
+    },
+    "c:\\Users\\dylan\\Projects\\Text-Summarization-model\\datasets\\slice_4.parquet": {
+      "num_bytes": 694908466,
+      "checksum": null
+    },
+    "c:\\Users\\dylan\\Projects\\Text-Summarization-model\\datasets\\slice_5.parquet": {
+      "num_bytes": 692310973,
+      "checksum": null
+    },
+    "c:\\Users\\dylan\\Projects\\Text-Summarization-model\\datasets\\slice_6.parquet": {
+      "num_bytes": 695678095,
+      "checksum": null
+    },
+    "c:\\Users\\dylan\\Projects\\Text-Summarization-model\\datasets\\slice_7.parquet": {
+      "num_bytes": 696696434,
+      "checksum": null
+    },
+    "c:\\Users\\dylan\\Projects\\Text-Summarization-model\\datasets\\slice_8.parquet": {
+      "num_bytes": 696908711,
+      "checksum": null
+    },
+    "c:\\Users\\dylan\\Projects\\Text-Summarization-model\\datasets\\slice_9.parquet": {
+      "num_bytes": 698436050,
+      "checksum": null
+    }
+  },
+  "download_size": 6954197413,
+  "features": {
+    "id": {
+      "dtype": "int32",
+      "_type": "Value"
+    },
+    "text": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "sum": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 19325095232,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 12370897819,
+      "num_examples": 9149047,
+      "shard_lengths": [
+        520000,
+        280000,
+        114674,
+        520000,
+        280000,
+        114593,
+        520000,
+        280000,
+        112775,
+        520000,
+        280000,
+        115115,
+        520000,
+        280000,
+        115307,
+        520000,
+        280000,
+        113216,
+        520000,
+        280000,
+        115631,
+        520000,
+        280000,
+        115562,
+        520000,
+        280000,
+        116620,
+        510000,
+        280000,
+        125554
+      ],
+      "dataset_name": "parquet"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
